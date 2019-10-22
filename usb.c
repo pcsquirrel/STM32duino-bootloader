@@ -60,7 +60,11 @@ void setupUSB (void) {
 
     volatile unsigned int delay;
     for(delay = 0;delay<512;delay++);
-
+    int i;
+    while (i<65000){
+    	i++;
+		asm volatile("nop");
+    }
     //  volatile unsigned x = 1024; do { ; }while(--x);// wait a moment
     /* turn on the USB clock */
     SET_REG(GPIO_CR(USB_DISC_BANK,USB_DISC_PIN),

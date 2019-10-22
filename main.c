@@ -41,9 +41,26 @@ int main()
     bool dont_wait=FALSE;
 
     systemReset(); // peripherals but not PC
+    int i=0;
+    while (i<65000){
+    	i++;
+		asm volatile("nop");
+	}
     setupCLK();
+    while (i<65000){
+    	i++;
+		asm volatile("nop");
+    }
     setupLEDAndButton();
+    while (i<65000){
+    	i++;
+		asm volatile("nop");
+    }
     setupUSB();
+    while (i<65000){
+    	i++;
+		asm volatile("nop");
+    }
     setupFLASH();
 
     switch(checkAndClearBootloaderFlag())
@@ -74,6 +91,8 @@ int main()
             }
         break;
     }
+
+    no_user_jump=1;
 
     if (!dont_wait)
     {
